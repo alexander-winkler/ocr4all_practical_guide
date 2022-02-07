@@ -239,9 +239,10 @@ If possible, try to get hold of high-quality scans provided by libraries.</p>
 <p>Ideally, you download the images as a bunch of single image files (png,jpg,tif).
 Sometimes, however there is only a single pdf file available for download.</p>
 <p>You can extract image files from the pdf using the <code>pdfimages</code> tool, which is part of <code>poppler-utils</code> and available <a href="https://poppler.freedesktop.org/">for linux</a> and <a href="https://formulae.brew.sh/formula/poppler">MacOS</a>.</p>
-<pre><code class="language-bash">pdfimages -png YOUR_PDF_FILE.pdf img-
+<pre><code class="language-bash">pdfimages -png YOUR_PDF_FILE.pdf img
 </code></pre>
 <p>This command will extract the images, convert them into the png-format and store them as <code>img-000.png img-001.png ...</code>.</p>
+<p>If you must use a google books pdf you will get lots of 'noise' (the Google watermarks) which you will have to take care of in the <a href="wf/./prep.html">next step</a>.</p>
 <h1><a class="header" href="#prepare-your-project" id="prepare-your-project">Prepare your project</a></h1>
 <p>In order to start a new OCR4all project (usually a book), go to the <code>ocr4all</code> directory created during the <a href="wf/./inst/installation_linux.html">installation</a> of OCR4all.</p>
 <pre><code>.
@@ -259,6 +260,11 @@ mkdir new_project/input
 </code></pre>
 <p>Copy the image files into <code>input</code> directory, either through the graphical interface (copy+paste) or in your Terminal:</p>
 <pre><code class="language-bash">cp path/to/download/img-*.png /path/to/ocr4all/data/new_project/input
+</code></pre>
+<p>If you have a google pdf with watermarks, you can copy only the proper page images:</p>
+<pre><code class="language-bash">for i in $(seq -w 1 3 &lt;number im images in your folder&gt;); 
+  do cp $i path/to/ocr4all/data/new_project/input;
+done
 </code></pre>
 <h1><a class="header" href="#preprocessing" id="preprocessing">Preprocessing</a></h1>
 <h1><a class="header" href="#segmentation" id="segmentation">Segmentation</a></h1>

@@ -175,9 +175,10 @@ If possible, try to get hold of high-quality scans provided by libraries.</p>
 <p>Ideally, you download the images as a bunch of single image files (png,jpg,tif).
 Sometimes, however there is only a single pdf file available for download.</p>
 <p>You can extract image files from the pdf using the <code>pdfimages</code> tool, which is part of <code>poppler-utils</code> and available <a href="https://poppler.freedesktop.org/">for linux</a> and <a href="https://formulae.brew.sh/formula/poppler">MacOS</a>.</p>
-<pre><code class="language-bash">pdfimages -png YOUR_PDF_FILE.pdf img-
+<pre><code class="language-bash">pdfimages -png YOUR_PDF_FILE.pdf img
 </code></pre>
 <p>This command will extract the images, convert them into the png-format and store them as <code>img-000.png img-001.png ...</code>.</p>
+<p>If you must use a google books pdf you will get lots of 'noise' (the Google watermarks) which you will have to take care of in the <a href="./prep.html">next step</a>.</p>
 
                     </main>
 
