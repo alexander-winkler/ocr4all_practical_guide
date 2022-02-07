@@ -16,11 +16,11 @@ Sometimes, however there is only a single pdf file available for download.
 You can extract image files from the pdf using the `pdfimages` tool, which is part of `poppler-utils` and available [for linux](https://poppler.freedesktop.org/) and [MacOS](https://formulae.brew.sh/formula/poppler).
 
 ```bash
-pdfimages -png YOUR_PDF_FILE.pdf img-
+pdfimages -png YOUR_PDF_FILE.pdf img
 ```
 
 This command will extract the images, convert them into the png-format and store them as `img-000.png img-001.png ...`.
 
-
+If you must use a google books pdf you will get lots of 'noise' (the Google watermarks) which you will have to take care of in the [next step](./prep.md).
 
 

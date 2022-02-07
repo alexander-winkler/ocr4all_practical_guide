@@ -25,3 +25,11 @@ Copy the image files into `input` directory, either through the graphical interf
 ```bash
 cp path/to/download/img-*.png /path/to/ocr4all/data/new_project/input
 ```
+
+If you have a google pdf with watermarks, you can copy only the proper page images:
+
+```bash
+for i in $(seq -w 1 3 <number im images in your folder>); 
+  do cp $i path/to/ocr4all/data/new_project/input;
+done
+```
