@@ -31,5 +31,5 @@
 - [Some statistics](./statistics.md)
 - [TEI conversion](./tei.md)
 - [OCR-D](./ocrd.md)
-- [test](./test.md)
+- [Collaborate via Github](./github.md)
 
