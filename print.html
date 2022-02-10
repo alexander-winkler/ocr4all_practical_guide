@@ -305,6 +305,7 @@ They should contain all relevant text-related pixels of a line and as possibly l
 </ol>
 <p>An any case you will have to add one or two lines to the reading order.</p>
 <p>Initials are tricky. Ideally, you consider them as separate lines.</p>
+<p>High text lines are sometimes split up by the algorithm. They have to be combined. Remember to check the reading order.</p>
 <h2><a class="header" href="#transcription-guidelines" id="transcription-guidelines">Transcription guidelines</a></h2>
 <ol>
 <li>Be as accurate as possible. Information can be taken away by (automatic) normalization, but it cannot be added if needed later on. Distinguish between 'ae' and 'æ', 's' and 'ſ', '&amp;' and 'et' and so on.</li>
@@ -459,19 +460,37 @@ for i in BOOK/processing/*.xml; \
 
 cd my_project
 </code></pre>
-<h3><a class="header" href="#create-a-git-repository-locally" id="create-a-git-repository-locally">Create a git repository locally</a></h3>
-<p>In your project folder initialize a git repository and add your files:</p>
-<pre><code class="language-bash">
-git init
+<h3><a class="header" href="#reduce-data-volume" id="reduce-data-volume">Reduce data volume</a></h3>
+<p>Projects can become quite heavy, especially if you're dealing with high-resolution images.</p>
+<p>It's not strictly necessary to have them on the github repository.</p>
+<p>You can significantly reduce the size of your repository by shrinking the image files in the <code>input</code> folder and by gitignoring the <code>*.nrm.png</code> files.</p>
+<p>These files are important mainly for UX, but not for the core functionalities of the OCR4all pipeline.</p>
+<pre><code class="language-bash"># Create a separate folder where you keep the original input images
 
-git add .
+mkdir originput
 
-git commit -m &quot;First commit&quot;
+cp input/* originput
 
+# Shrink and binarize the original images
+
+for i in originput/*.png; do convert $i -resize 20 -monochrome ${i/orig/}; done
 </code></pre>
-<h3><a class="header" href="#create-a-repository-on-github" id="create-a-repository-on-github">Create a repository on Github</a></h3>
+<p>Then, create a <code>.gitignore</code> file and add the following line:</p>
+<pre><code>originput
+processing/*.nrm.png
+
+# if you want to exclude the OCR models as well:
+models
+</code></pre>
+<p>Now you've got a new <code>input</code> directory with bw thumbnails instead of high-resolution images and you won't be tracking (and uploading) the <code>*.nrm.png</code>.</p>
+<p>You're github repo will thus contain thumbnails in <code>input</code> and <code>*.xml</code> + <code>*.bin.png</code> in <code>processing</code>.</p>
+<p>The work will be done (and changes will happen) only in the <code>*.xml</code> files.</p>
+<h3><a class="header" href="#create-a-repository-locally-and-on-github" id="create-a-repository-locally-and-on-github">Create a repository locally and on Github</a></h3>
 <p>Go to <a href="https://github.com">Github</a> and create a repository (e.g. <code>my_project</code>). </p>
-<pre><code class="language-bash">git branch -M main
+<p>Then create a local git in your project folder (<code>my_project</code>) by <code>cd</code>'ing into it and then typing</p>
+<pre><code class="language-bash">git init
+git commit -m &quot;first commit&quot;
+git branch -M main
 git remote add origin git@github.com:&lt;YOUR-GITHUB-ACCOUNT-NAME/my_project.git
 git push -u origin main
 </code></pre>
