@@ -284,6 +284,42 @@ xmllint --xpath &quot;//*[local-name()='TextEquiv'][@index='0']/*[local-name()='
 </code></pre>
 <h1><a class="header" href="#larex" id="larex">LAREX</a></h1>
 <h1><a class="header" href="#ground-truth-production" id="ground-truth-production">Ground Truth Production</a></h1>
+<h2><a class="header" href="#introduction-1" id="introduction-1">Introduction</a></h2>
+<p>Ground Truth, the corrected transcription on which the OCR models are trained, is generated in the LAREX tool.</p>
+<h2><a class="header" href="#page-segmentation" id="page-segmentation">Page segmentation</a></h2>
+<p>If a page doesn't contain any content but has a page segmentation (maybe with garbage line segments), delete it:</p>
+<p>Select the segment and click on 'Delete&quot;</p>
+<p><img src="./img/LAREX_seg_del.png" alt="Delete segment" /></p>
+<h2><a class="header" href="#line-segmentation-1" id="line-segmentation-1">Line segmentation</a></h2>
+<p>When training/refining the OCR model, the OCR engine looks at the selected line polygons.
+They should contain all relevant text-related pixels of a line and as possibly little noise (parts of other lines, empty space with scan noise etc.).</p>
+<p>It's, however, probably not worth spending too much time on refinig the line polygons.</p>
+<p>What is important for a satisfactory OCR result is that each separated line is recognized as such.</p>
+<p>Oftentimes, you will find double lines:</p>
+<p><img src="./img/LAREX_double_line.png" alt="a double line" /></p>
+<p>They have to be split, otherwise the lines will not be OCRed correctly and will be missing in the end result.</p>
+<p>Lines can be split ...</p>
+<ol>
+<li>either by adjusting one polygon to one line and adding a second one, or</li>
+<li>by using the <code>Subtract</code> function: <img src=".img/LAREX_subtract.png" alt="Subtract" />. Cut the line into two.</li>
+</ol>
+<p>An any case you will have to add one or two lines to the reading order.</p>
+<p>Initials are tricky. Ideally, you consider them as separate lines.</p>
+<h2><a class="header" href="#transcription-guidelines" id="transcription-guidelines">Transcription guidelines</a></h2>
+<ol>
+<li>Be as accurate as possible. Information can be taken away by (automatic) normalization, but it cannot be added if needed later on. Distinguish between 'ae' and 'æ', 's' and 'ſ', '&amp;' and 'et' and so on.</li>
+<li>Use unicode characters in a consistant way.</li>
+</ol>
+<p>Important Unicode characters:</p>
+<table><thead><tr><th>char</th><th>Unicode</th><th>Windows</th></tr></thead><tbody>
+<tr><td>æ</td><td>u00e6</td><td>Alt+0230</td></tr>
+<tr><td>Æ</td><td>u00c6</td><td>Alt+0198</td></tr>
+<tr><td>q́</td><td>q + u0301</td><td>Alt+0301</td></tr>
+</tbody></table>
+<h2><a class="header" href="#save-results" id="save-results">Save results</a></h2>
+<p>Currently, writing to file is triggered only by clicking on <code>Save result</code> in the LAREX side pane (or <code>Ctrl</code> + <code>S</code>):</p>
+<p><img src="./img/LAREX_side_pane.png" alt="LAREX side pane" /></p>
+<p>So, when you've done with a page, do remember saving your work.</p>
 <h1><a class="header" href="#training" id="training">Training</a></h1>
 <h1><a class="header" href="#manage-your-metadata" id="manage-your-metadata">Manage your metadata</a></h1>
 <p>If you work on more than a handful of projects it is easy to loose track of where you got your files from.</p>
