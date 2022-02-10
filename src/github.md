@@ -9,6 +9,7 @@ Two different scenarios are presented:
 
 ## Scenario I: Create your own project
 
+
 ### Prepare your system
 
 Create your project folder and `cd` into it:
@@ -19,29 +20,59 @@ mkdir -p my_project/{data,models}
 cd my_project
 ```
 
-### Create a git repository locally
+### Reduce data volume
 
-In your project folder initialize a git repository and add your files:
+Projects can become quite heavy, especially if you're dealing with high-resolution images.
+
+It's not strictly necessary to have them on the github repository.
+
+You can significantly reduce the size of your repository by shrinking the image files in the `input` folder and by gitignoring the `*.nrm.png` files.
+
+These files are important mainly for UX, but not for the core functionalities of the OCR4all pipeline.
 
 ```bash
+# Create a separate folder where you keep the original input images
 
-git init
+mkdir originput
 
-git add .
+cp input/* originput
 
-git commit -m "First commit"
+# Shrink and binarize the original images
 
+for i in originput/*.png; do convert $i -resize 20 -monochrome ${i/orig/}; done
 ```
 
-### Create a repository on Github
+Then, create a `.gitignore` file and add the following line:
+
+```
+originput
+processing/*.nrm.png
+
+# if you want to exclude the OCR models as well:
+models
+```
+
+Now you've got a new `input` directory with bw thumbnails instead of high-resolution images and you won't be tracking (and uploading) the `*.nrm.png`.
+
+You're github repo will thus contain thumbnails in `input` and `*.xml` + `*.bin.png` in `processing`.
+
+The work will be done (and changes will happen) only in the `*.xml` files.
+
+
+### Create a repository locally and on Github
 
 Go to [Github](https://github.com) and create a repository (e.g. `my_project`). 
 
+Then create a local git in your project folder (`my_project`) by `cd`'ing into it and then typing
+
 ```bash
+git init
+git commit -m "first commit"
 git branch -M main
 git remote add origin git@github.com:<YOUR-GITHUB-ACCOUNT-NAME/my_project.git
 git push -u origin main
 ```
+
 
 ## Scenario II: The projects exists already
 
