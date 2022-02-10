@@ -36,6 +36,8 @@ An any case you will have to add one or two lines to the reading order.
 
 Initials are tricky. Ideally, you consider them as separate lines.
 
+High text lines are sometimes split up by the algorithm. They have to be combined. Remember to check the reading order.
+
 ## Transcription guidelines
 
 1. Be as accurate as possible. Information can be taken away by (automatic) normalization, but it cannot be added if needed later on. Distinguish between 'ae' and 'æ', 's' and 'ſ', '&' and 'et' and so on.
