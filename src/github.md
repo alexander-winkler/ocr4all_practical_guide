@@ -95,7 +95,6 @@ git commit -m "checked OCR for Chap. 1 of XYZ"
 git push
 ```
 
-
 In case you embark on a more adventurous set of modifications, consider creating a new branch.
 
 ```bash
@@ -104,5 +103,3 @@ git checkout -b <branch_name>
 ```
 
 For mere Ground Truth generation, this should not be necessary, however.
-
-
