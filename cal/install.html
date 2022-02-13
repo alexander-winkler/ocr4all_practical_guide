@@ -164,6 +164,32 @@
                 <div id="content" class="content">
                     <main>
                         <h1><a class="header" href="#calamari-installation" id="calamari-installation">Calamari Installation</a></h1>
+<p>The installation of calamari can be a pain.
+At the time of writing (13.2.22), installation via pip doesn't seem to work properly.</p>
+<p>It is better to install it from source.</p>
+<p>For a clean and fresh calamari installation, let's clone the git repository:</p>
+<pre><code class="language-bash">git clone https://github.com/calamari-OCR/calamari
+</code></pre>
+<p>Then create a virtual environment (to keep things simple, I put the virtual environment folder into the calamari folder):</p>
+<pre><code class="language-bash">
+cd calamari
+
+mkdir venv
+
+python3.7 -m venv venv
+
+source venv/bin/activate
+</code></pre>
+<p>The virual environment is active, so now you can run the <code>setup.py</code>:</p>
+<pre><code class="language-bash">python setup.py install
+</code></pre>
+<p>When you run <code>calamari-predict</code> for the first time, you will see a number of error messages according to which you are lacking required packages. </p>
+<p>You will have to run a number of <code>pip install &lt;package name&gt;</code> to install what is required.</p>
+<p>I have created a <a href="./cal/requirements.txt"><code>requirements.txt</code></a> for the virtual environment of my current Calamari (<code>v2.2.0</code>) installation (<code>pip freeze --local &gt; requirements.txt</code>).</p>
+<p>So you could download the <code>requirements.txt</code> and try to run</p>
+<pre><code class="language-bash">
+pip install -r requirements.txt
+</code></pre>
 
                     </main>
 
